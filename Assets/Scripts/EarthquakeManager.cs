@@ -9,6 +9,8 @@ public class EarthquakeManager : MonoBehaviour
     [SerializeField] private float waveScale;
     [SerializeField] private MapUI mapUI;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private GameObject UI;
+    [SerializeField] private GameObject EndUI;
 
     
     private bool isEarthquaking;
@@ -64,5 +66,13 @@ public class EarthquakeManager : MonoBehaviour
         OnEarthquake?.Invoke(transform.position);
         isEarthquaking = true;
         audioSource.Play();
+        StartCoroutine(WaitAfter(10f));
+    }
+    public IEnumerator WaitAfter(float time)
+    {
+        yield return new WaitForSeconds(time);
+        
+        UI.SetActive(false);
+        EndUI.SetActive(true);
     }
 }
