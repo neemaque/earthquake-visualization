@@ -5,6 +5,7 @@ public class Destructable : MonoBehaviour
 {
     [SerializeField] private Vector3 particleSize;
     [SerializeField] private ParticleSystem particleSystem;
+    [SerializeField] private ParticleSystem particleSystem1;
     [SerializeField] private GameObject meshIntact;
     [SerializeField] private GameObject meshBroken;
     [SerializeField] private float buildingHeight;
@@ -13,6 +14,7 @@ public class Destructable : MonoBehaviour
     [SerializeField] private float shakeAmount;
     [SerializeField] private Vector3 targetEulerAngles = new Vector3(0f, 30f, 0f);
     [SerializeField] float tiltSpeed;
+    [SerializeField] private AudioSource audioSource;
     private bool sinking;
     private Quaternion targetRotation;
     private void Awake()
@@ -71,10 +73,17 @@ public class Destructable : MonoBehaviour
     {
         sinking = true;
         particleSystem.Play();
+        particleSystem1.Play();
+        StartCoroutine(SoundWait(Random.Range(0f, 1.5f)));
     }
     public IEnumerator Wait(float time)
     {
         yield return new WaitForSeconds(time);
         Break();
+    }
+    public IEnumerator SoundWait(float time)
+    {
+        yield return new WaitForSeconds(time);
+        audioSource.Play();
     }
 }

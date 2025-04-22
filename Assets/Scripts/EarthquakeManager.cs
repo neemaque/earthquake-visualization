@@ -8,6 +8,8 @@ public class EarthquakeManager : MonoBehaviour
     [SerializeField] private float waveSpeed;
     [SerializeField] private float waveScale;
     [SerializeField] private MapUI mapUI;
+    [SerializeField] private AudioSource audioSource;
+
     
     private bool isEarthquaking;
     public static EarthquakeManager Instance { get; private set; }
@@ -61,5 +63,6 @@ public class EarthquakeManager : MonoBehaviour
         
         OnEarthquake?.Invoke(transform.position);
         isEarthquaking = true;
+        audioSource.Play();
     }
 }
