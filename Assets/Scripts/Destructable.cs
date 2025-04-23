@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 public class Destructable : MonoBehaviour
 {
+    [SerializeField] private bool toBeDestroyed;
     [SerializeField] private Vector3 particleSize;
     [SerializeField] private ParticleSystem particleSystem;
     [SerializeField] private ParticleSystem particleSystem1;
@@ -71,10 +72,10 @@ public class Destructable : MonoBehaviour
     }
     void Break()
     {
-        sinking = true;
-        particleSystem.Play();
+        if(toBeDestroyed)sinking = true;
+        if(toBeDestroyed)particleSystem.Play();
         particleSystem1.Play();
-        StartCoroutine(SoundWait(Random.Range(0f, 1.5f)));
+        if(toBeDestroyed)StartCoroutine(SoundWait(Random.Range(0f, 1.5f)));
     }
     public IEnumerator Wait(float time)
     {
