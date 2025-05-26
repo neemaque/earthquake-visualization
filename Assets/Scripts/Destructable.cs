@@ -23,7 +23,7 @@ public class Destructable : MonoBehaviour
         meshBroken.SetActive(false);
         var shape = particleSystem.shape;
         shape.scale = particleSize * 1.3f;
-        sinkSpeed += Random.Range(-0.2f, 0.1f);
+        sinkSpeed += Random.Range(-0.15f, 0.1f);
     }
     IEnumerator Start()
     {

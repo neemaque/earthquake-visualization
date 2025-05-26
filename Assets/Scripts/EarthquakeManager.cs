@@ -66,6 +66,7 @@ public class EarthquakeManager : MonoBehaviour
         OnEarthquake?.Invoke(transform.position);
         isEarthquaking = true;
         audioSource.Play();
+        UI.GetComponent<UI>().closeMap();
         StartCoroutine(WaitAfter(13f));
     }
     public IEnumerator WaitAfter(float time)
